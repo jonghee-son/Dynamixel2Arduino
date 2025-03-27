@@ -918,15 +918,18 @@ bool Dynamixel2Arduino::getTorqueEnableStat(uint8_t id)
 uint8_t Dynamixel2Arduino::getHardwareError(uint8_t id)
 {
   uint16_t model_num = getModelNumberFromTable(id);
+  uint8_t ret = 0;
 
   if(model_num == AX12A || model_num == AX12W || model_num == AX18A || model_num == DX113 || model_num == DX116 || model_num == DX117 || model_num == RX10 || model_num == RX24F || model_num == RX28 || model_num == RX64 || model_num == EX106 || model_num == MX12W || model_num == MX28 || model_num == MX64 || model_num == MX106 || model_num == XL320)
   {
-    setLastLibErrCode(DXL_LIB_ERROR_INVAILD_PROTOCOL_VERSION);
-
-    return 0;
+    setLastLibErrCode(DXL_LIB_ERROR_NOT_SUPPORTED);
+  }
+  else
+  {
+    ret = (uint8_t)readControlTableItem(ControlTableItem::HARDWARE_ERROR_STATUS, id);
   }
 
-  return readControlTableItem(ControlTableItem::HARDWARE_ERROR_STATUS, id);
+  return ret;
 }
 
 int32_t Dynamixel2Arduino::readControlTableItem(uint8_t item_idx, uint8_t id, uint32_t timeout)
