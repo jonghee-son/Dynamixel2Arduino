@@ -385,7 +385,20 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
      * @return It returns the Torque Enable data read from DXL control table item.
      * If the Torque is On, true(1) is returned. Otherwise false(0) is returned.
      */  
-    bool getTorqueEnableStat(uint8_t id);   
+    bool getTorqueEnableStat(uint8_t id);  
+    
+    /**
+     * @brief It is API for getting hardware error status of DYNAMIXEL.
+     * @code
+     * const int DXL_DIR_PIN = 2;
+     * Dynamixel2Arduino dxl(Serial1, DXL_DIR_PIN);
+     * Serial.print(dxl.getHardwareError(1));
+     * @endcode
+     * @param id DYNAMIXEL Actuator's ID.
+     * @return It returns 0 on no error, value any other than 0 on hardware error.
+     * If the read fails, 0 is returned. Whether or not this is an actual value can be confirmed with @getLastLibErrCode().
+     */
+    uint8_t getHardwareError(uint8_t id);
 
     /**
      * @brief It is API for getting data of a DYNAMIXEL control table item.
@@ -441,8 +454,6 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
     bool setPositionPIDGain(uint8_t id, uint16_t p_gain, uint16_t i_gain, uint16_t d_gain);
     bool setVelocityPIGain(uint8_t id, uint16_t p_gain, uint16_t i_gain);
     bool setFeedForwardGain(uint8_t id, uint16_t fisrt_gain, uint16_t second_gain);
-
-    uint8_t getHardwareError(uint8_t id);
     
     // https://github.com/ROBOTIS-GIT/Dynamixel2Arduino/issues/73
     uint8_t getOperatingMode(uint8_t id);
