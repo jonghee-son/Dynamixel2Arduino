@@ -50,10 +50,10 @@ enum D2ALibErrorCode
 
 enum MovingStatus
 {
-  IN_POSITION = 0x80,
-  PROFILE_ONGOING = 0x40,
-  FOLLOWING_ERROR = 0x10,
-  VELOCITY_PROFILE = 0x0C
+  IN_POSITION = 0x01,
+  PROFILE_ONGOING = 0x02,
+  FOLLOWING_ERROR = 0x08,
+  VELOCITY_PROFILE = 0x30
 };
 
 class Dynamixel2Arduino : public DYNAMIXEL::Master
