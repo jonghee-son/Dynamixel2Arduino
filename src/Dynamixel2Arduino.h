@@ -401,22 +401,22 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
      * const int DXL_DIR_PIN = 2;
      * Dynamixel2Arduino dxl(Serial1, DXL_DIR_PIN);
      * status = dxl.getMovingStatus(1);
-     * if (status & IN_POSITION == 1) {
+     * if ((status & IN_POSITION) == IN_POSITION) {
      *   Serial.print("Arrived");
      * }
-     * if (status & PROFILE_ONGOING == 1) {
+     * if ((status & PROFILE_ONGOING) == PROFILE_ONGOING) {
      *   Serial.print("Profile is in progress");
      * }
-     * if (status & FOLLOWING_ERROR == 1) {
+     * if ((status & FOLLOWING_ERROR) == FOLLOWING_ERROR) {
      *   Serial.print("Not following desired position trajectory");
      * }
-     * if (status & VELOCITY_PROFILE == 0xC0) {
+     * if ((status & VELOCITY_PROFILE) == VELOCITY_PROFILE) {
      *   Serial.print("Using trapezoidal profile");
      * }
-     * else if (status & VELOCITY_PROFILE == 0x80) {
+     * else if ((status & VELOCITY_PROFILE) == VELOCITY_PROFILE) {
      *   Serial.print("Using triangular profile");
      * }
-     * else if (status & VELOCITY_PROFILE == 0x40) {
+     * else if ((status & VELOCITY_PROFILE) == VELOCITY_PROFILE) {
      *   Serial.print("Using rectangular profile");
      * }
      * else {
