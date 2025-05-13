@@ -425,6 +425,7 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
      * @endcode
      * @param id DYNAMIXEL Actuator's ID.
      * @return It returns the data read from DXL control table item.
+     * If the read fails, 0 is returned. Whether or not this is an actual value can be confirmed with @getLastLibErrCode().
      */
     uint8_t getMovingStatus(uint8_t id);
 
