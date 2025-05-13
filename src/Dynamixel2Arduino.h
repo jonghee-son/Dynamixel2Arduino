@@ -423,7 +423,7 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
      * @code
      * const int DXL_DIR_PIN = 2;
      * Dynamixel2Arduino dxl(Serial1, DXL_DIR_PIN);
-     * if (dxl.getHardwareError(1) & INPUT_VOLTAGE_ERROR == INPUT_VOLTAGE_ERROR) {
+     * if ((dxl.getHardwareError(1) & INPUT_VOLTAGE_ERROR) == INPUT_VOLTAGE_ERROR) {
      *   Serial.println("Input Voltage Error");
      * }
      * @endcode
