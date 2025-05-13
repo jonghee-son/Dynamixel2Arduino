@@ -48,6 +48,14 @@ enum D2ALibErrorCode
   D2A_LIB_ERROR_UNKNOWN_MODEL_NUMBER
 };
 
+enum MovingStatus
+{
+  IN_POSITION = 0x80,
+  PROFILE_ONGOING = 0x40,
+  FOLLOWING_ERROR = 0x10,
+  VELOCITY_PROFILE = 0x0C
+};
+
 class Dynamixel2Arduino : public DYNAMIXEL::Master
 {
   public:
@@ -386,6 +394,39 @@ class Dynamixel2Arduino : public DYNAMIXEL::Master
      * If the Torque is On, true(1) is returned. Otherwise false(0) is returned.
      */  
     bool getTorqueEnableStat(uint8_t id);   
+
+    /**
+     * @brief It is API for getting the moving status of DYNAMIXEL.
+     * @code
+     * const int DXL_DIR_PIN = 2;
+     * Dynamixel2Arduino dxl(Serial1, DXL_DIR_PIN);
+     * status = dxl.getMovingStatus(1);
+     * if (status & IN_POSITION == 1) {
+     *   Serial.print("Arrived");
+     * }
+     * if (status & PROFILE_ONGOING == 1) {
+     *   Serial.print("Profile is in progress");
+     * }
+     * if (status & FOLLOWING_ERROR == 1) {
+     *   Serial.print("Not following desired position trajectory");
+     * }
+     * if (status & VELOCITY_PROFILE == 0xC0) {
+     *   Serial.print("Using trapezoidal profile");
+     * }
+     * else if (status & VELOCITY_PROFILE == 0x80) {
+     *   Serial.print("Using triangular profile");
+     * }
+     * else if (status & VELOCITY_PROFILE == 0x40) {
+     *   Serial.print("Using rectangular profile");
+     * }
+     * else {
+     *   Serial.print("Not using any profile (step)");
+     * }
+     * @endcode
+     * @param id DYNAMIXEL Actuator's ID.
+     * @return It returns the data read from DXL control table item.
+     */
+    uint8_t getMovingStatus(uint8_t id);
 
     /**
      * @brief It is API for getting data of a DYNAMIXEL control table item.

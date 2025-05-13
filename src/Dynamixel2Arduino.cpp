@@ -915,6 +915,11 @@ bool Dynamixel2Arduino::getTorqueEnableStat(uint8_t id)
   return ret;
 }
 
+uint8_t Dynamixel2Arduino::getMovingStatus(uint8_t id)
+{
+  return readControlTableItem(ControlTableItem::MOVING_STATUS, id);
+}
+
 int32_t Dynamixel2Arduino::readControlTableItem(uint8_t item_idx, uint8_t id, uint32_t timeout)
 {
   int32_t ret = 0;
