@@ -570,7 +570,8 @@ ControlTableItemInfo_t DYNAMIXEL::getControlTableItemInfo(uint16_t model_num, ui
     case XC330_M181:
     case XC330_M288:
     case XC330_T181:
-    case XC330_T288:    
+    case XC330_T288:   
+    case XM335_T323: 
     case XM430_W210:
     case XM430_W350:
     case XH430_V210:
